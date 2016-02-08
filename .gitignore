@@ -1,0 +1,4 @@
+node_modules/
+views/js/bundle.js
+*.log
+components/

@@ -1,0 +1,24 @@
+<!DOCTYPE html>  
+<html lang="en">  
+    <head>
+        <% include partials/head.ejs %>
+    </head>
+    <body>
+        <div class="container">
+            <% include partials/nav.ejs %>
+            <div class="jumbotron">
+                <h1>Registration</h1>
+                <%if (success === true) { %>
+                <h4>Registration successful, you may now <a href="/login">login</a></h4>
+                <% } else { %>
+                <form action="/register" method="POST">
+                    <input type="text" name="email" placeholder="Email"> <br />
+                    <input type="text" name="username" placeholder="Username"> <br />
+                    <input type="password" name="password" placeholder="Password"> <br />
+                    <input type="submit" class="btn btn-success">
+                </form>
+                <% } %>
+            </div>
+        </div>
+    </body>
+</html>  

@@ -1,0 +1,43 @@
+<!DOCTYPE html>  
+<html lang="en">  
+    <head>
+        <% include partials/head.ejs %>
+    </head>
+    <body>
+        <div class="container">
+            <% include partials/nav.ejs %>
+            <div class="jumbotron">
+                <h1>FAQ</h1>
+                <p><strong>1. What is PGP and why should I use it?</strong></p>
+                <p>Pretty Good Privacy (PGP) is a data encryption and decryption computer program that provides cryptographic privacy and authentication for data communication. PGP is often used for signing, encrypting, and decrypting texts, e-mails, files, directories, and whole disk partitions and to increase the security of e-mail communications. (<a href="https://en.wikipedia.org/wiki/Pretty_Good_Privacy">wiki</a>).
+                    <ul>
+                        <li><a href="http://recode.net/2015/05/13/encrypting-your-email-what-is-pgp-why-is-it-important-and-how-do-i-use-it/">http://recode.net/2015/05/13/encrypting-your-email-what-is-pgp-why-is-it-important-and-how-do-i-use-it/</a>
+                        </li>
+                        <li><a href="http://searchsecurity.techtarget.com/definition/Pretty-Good-Privacy">http://searchsecurity.techtarget.com/definition/Pretty-Good-Privacy</a></li>
+                        <li><a href="http://www.makeuseof.com/tag/pgp-me-pretty-good-privacy-explained/">http://www.makeuseof.com/tag/pgp-me-pretty-good-privacy-explained/</a></li>
+                        <li><a href="http://www.bitcoinnotbombs.com/beginners-guide-to-pgp/">http://www.bitcoinnotbombs.com/beginners-guide-to-pgp/</a></li>
+                    </ul>
+                </p>
+
+                <p><strong>2. How do you generate keypairs?</strong></p>
+                <p>We use a library called <a href="http://openpgpjs.org/">OpenPGP.js</a>, it has received its first full security audit by Cure53. The results of which can be found <a href="https://github.com/openpgpjs/openpgpjs/wiki/Cure53-security-audit">here</a>.</p>
+
+                <p><strong>3. 4096 bit keys seem to take a while to generate, how long does it take?</strong></p>
+                <p>4096 bit keys can take anywhere between 30 seconds to 1 minute to generate in a modern browser. This is the encryption strength that we recommend for the average user.</p>
+
+                <p><strong>4. Do you store any information?</strong></p>
+                <p>No, all of the key generation, message encryption, and message decryption happen in the client. There is no data ever being sent to our servers.</p>
+
+                <p><strong>5. Is this site open-source?</strong></p>
+                <p>Not yet, but it will be. Watch <a href="http://joshterrill.com">my blog</a> for more info.</p>
+
+                <p><strong>6. Can I get involved?</strong></p>
+                <p>Absolutely, if you want to help us out with anything, <a href="mailto:joshterrill.dev@gmail.com">drop me a line</a> (<a href="/contact">Public Key</a>). We have plans to expand this and could use all the help we can get!</p>
+
+                <p><strong>7. What are the plans for the future?</strong></p>
+                <p>We have plans to create a mobile application that acts as a messenger. You would be able to send encrypted messages to other people on your contacts list who also have the app and similar to this site, all of the encryption/decryption would be done on the client so no sensitive information would ever leak. We also intend on adding some more features that some software clients offer such as verifying, signing, and more.</p>
+            </div>
+        </div>
+        <% include partials/footer.ejs %>
+    </body>
+</html>  

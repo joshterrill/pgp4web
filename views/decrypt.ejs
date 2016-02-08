@@ -1,0 +1,60 @@
+<!DOCTYPE html>  
+<html lang="en">  
+    <head>
+        <% include partials/head.ejs %>
+        <script src="js/bundle.js"></script>
+        <script>
+            $(function() {
+                $("#decryptMessage").on("submit", function(e) {
+                    e.preventDefault();
+                    var validform = true;
+                    if ($(".generateprivatekey").val() === "") {
+                        validform = false;
+                        $(".decryptedmessage").html("Error: No private key found.");
+                        return;
+                    } 
+                    else if ($(".generatedencryptedmessage").val() === "") {
+                        validform = false;
+                        $(".decryptedmessage").html("Error: No message to be decrypted.");
+                        return;
+                    }
+                    else if ($(".privatePassword").val() === "") {
+                        validform = false;
+                        $(".decryptedmessage").html("Error: No password entered.");
+                        return;
+                    }
+
+                    if (validform) {
+                        $(".decryptButton").html("Decrypting... <i class='fa fa-spinner fa-spin'></i>")
+                        decrypt();
+                    }
+                    
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <% include partials/nav.ejs %>
+            <div class="jumbotron">
+                <h1>Decrypt</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form id="decryptMessage">
+                            <h3>Fill out the form with your private key, password, and message to be decrypted</h3>
+                            <textarea name="privateKey" class="generateprivatekey" placeholder="Your private key..."></textarea> <br />
+                            <textarea name="receiverMessage" class="generatedencryptedmessage" placeholder="Encrypted message..."></textarea> <br />
+                            <input type="password" name="privatePassword" class="privatePassword" placeholder="Password"> <br />
+                            <button class="btn btn-success decryptButton">Decrypt</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Message</h2>
+                        <pre class="decryptedmessage">Press 'Decrypt' to read message...</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% include partials/footer.ejs %>
+    </body>
+</html>  

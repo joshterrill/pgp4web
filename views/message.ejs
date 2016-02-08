@@ -1,0 +1,35 @@
+<!DOCTYPE html>  
+<html lang="en">  
+    <head>
+        <% include partials/head.ejs %>
+        <script src="js/bundle.js"></script>
+        <script>
+            $(function() {
+                $("#generateMessage").on("submit", function(e) {
+                    e.preventDefault();
+                    encrypt();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <% include partials/nav.ejs %>
+            <div class="jumbotron">
+                <h1>Message</h1>
+                <form id="generateMessage" action="/keys" method="POST">
+                    <h3>Send Message To:</h3>
+                    <select name="messageto">
+                        <option>Select One</option>
+                        <% for (var i=0; i<contacts.length; i++) { %>
+                            <option value="<%= contacts[i].username %>"><%= contacts[i].username %></option>
+                        <% }%>
+                    </select> <br />
+                    <textarea name="message" placeholder="Type message here"></textarea> <br />
+                    <input type="submit" class="btn btn-success">
+                </form>
+                <div class="outputkey"></div>
+            </div>
+        </div>
+    </body>
+</html>  

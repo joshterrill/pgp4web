@@ -1,0 +1,76 @@
+<!DOCTYPE html>  
+<html lang="en">  
+    <head>
+        <% include partials/head.ejs %>
+        <script src="js/bundle.js"></script>
+        <script>
+            $(function() {
+                $("#generateKeys").on("submit", function(e) {
+                    e.preventDefault();
+                    var validform = true;
+                    $("[class$='warning']").hide();
+                    if ($("input[name='password']").val() === "") {
+                        validform = false;
+                        $(".passwordwarning").show();
+                    }
+                    if ($("input[name='name']").val() === "") {
+                        validform = false;
+                        $(".namewarning").show();
+                    }
+
+                    if (validform) {
+                        $(".generateButton").html("Generating... <i class='fa fa-spinner fa-spin'></i>");
+                        generate();
+                    }
+                });
+
+                $("select[name='encryptionstrength']").change(function(e) {
+                    if (e.target.value === "1024") {
+                        $(".strengthwarning").removeClass("alert-warning");
+                        $(".strengthwarning").addClass("alert-danger");
+                        $(".strengthwarning").html("<i class='fa fa-warning'></i> 1024 bit keys are extremely weak and only recommended for testing purposes.");
+                        $(".strengthwarning").show();
+                    } 
+                    else if (e.target.value === "4096") {
+                        $(".strengthwarning").removeClass("alert-danger");
+                        $(".strengthwarning").addClass("alert-warning");
+                        $(".strengthwarning").html("<i class='fa fa-info-circle'></i> 4096 bit keys may take longer to generate but are recommended.");
+                        $(".strengthwarning").show();
+                    } else {
+                        $(".strengthwarning").hide();
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <% include partials/nav.ejs %>
+            <div class="jumbotron">
+                <h1>Generate</h1>
+                <form id="generateKeys">
+                    <h3>Fill out the form to generate a public / private key pair</h3>
+                    <input type="text" name="name" placeholder="Name"> <span class="alert-danger namewarning generalwarning" style="display:none"><i class="fa fa-warning"></i> Please enter a name</span>  <br />
+                    <input type="text" name="email" placeholder="Email (optional)"> <br />
+                    <input type="password" name="password" placeholder="Password"> <span class="alert-danger passwordwarning generalwarning" style="display:none"><i class="fa fa-warning"></i> Please enter a password</span> <br />
+                    <select name="encryptionstrength">
+                        <option value="">Encryption Strength</option>
+                        <option value="1024">1024 bit</option>
+                        <option value="2048">2048 bit</option>
+                        <option value="4096">4096 bit</option>
+                    </select> <span class="alert-danger strengthwarning generalwarning" style="display:none"></span> <br />
+                    <button class="btn btn-success generateButton">Generate</button>
+                </form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="generatedpublickey"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="generatedprivatekey"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% include partials/footer.ejs %>
+    </body>
+</html>  

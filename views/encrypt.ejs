@@ -1,0 +1,39 @@
+<!DOCTYPE html>  
+<html lang="en">  
+    <head>
+        <% include partials/head.ejs %>
+        <script src="js/bundle.js"></script>
+        <script>
+            $(function() {
+                $("#encryptMessage").on("submit", function(e) {
+                    $(".encryptButton").html("Encrypting... <i class='fa fa-spinner fa-spin'></i>")
+                    e.preventDefault();
+                    encrypt();
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <% include partials/nav.ejs %>
+            <div class="jumbotron">
+                <h1>Encrypt</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form id="encryptMessage">
+                            <h3>Fill out the form with the recipients public key and your message</h3>
+                            <textarea name="recipientKey" class="recipientKey" placeholder="Recipient public key..."></textarea> <br />
+                            <textarea name="senderMessage" class="senderMessage" placeholder="Your message"></textarea> <br />
+                            <button class="btn btn-success encryptButton">Encrypt</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Message</h2>
+                        <pre class="messageOutput">Press 'Encrypt' to generate...</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% include partials/footer.ejs %>
+    </body>
+</html>  
